@@ -41,3 +41,5 @@ gem "less-rails"
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 gem 'devise'
+
+gem 'pry-rails'
