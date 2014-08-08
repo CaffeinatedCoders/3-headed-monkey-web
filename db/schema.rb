@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140802103949) do
+ActiveRecord::Schema.define(version: 20140802133524) do
+
+  create_table "devices", force: true do |t|
+    t.string   "key"
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "devices", ["key"], name: "index_devices_on_key", unique: true
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
