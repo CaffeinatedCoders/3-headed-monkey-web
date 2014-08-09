@@ -43,3 +43,17 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem 'devise'
 
 gem 'pry-rails'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.2'
+  gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'rspec-collection_matchers', '~> 1.0.0'
+  gem 'faker', '~> 1.4.2' #temporarily also in development for testing things out
+end
+
+group :test do
+  gem 'faker', '~> 1.4.2'
+  gem 'capybara', '~> 2.4.1'
+  gem 'database_cleaner', '~> 1.3.0'
+  gem 'launchy', '~> 2.4.2'
+end

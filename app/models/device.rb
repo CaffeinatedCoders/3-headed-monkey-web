@@ -1,8 +1,8 @@
 class Device < ActiveRecord::Base
   before_create :generate_key
-
-
   belongs_to :user
+
+  validates_presence_of :name
 
 private
 
