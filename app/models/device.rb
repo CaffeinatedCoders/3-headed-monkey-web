@@ -1,6 +1,7 @@
 class Device < ActiveRecord::Base
   before_create :generate_key
   belongs_to :user
+  has_many :locations
 
   validates_presence_of :name
 

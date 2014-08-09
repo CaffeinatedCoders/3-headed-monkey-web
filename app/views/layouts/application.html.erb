@@ -49,9 +49,6 @@
           <a class="brand" href="#">ThreeHeadedMonkeyWeb</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
               <% if user_signed_in? %>
                   <li><%= link_to current_user.email, edit_user_registration_path %></li>
                   <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
@@ -71,9 +68,9 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <% if user_signed_in? %>
+                <%= link_to "Your Devices", devices_path %>
+              <% end %>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

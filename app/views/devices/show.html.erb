@@ -8,6 +8,12 @@
   <dd><%= @device.key %></dd>
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @device.name %></dd>
+  <dt><strong>Saved locations:</strong></dt>
+  <dd><%= @device.locations.size %></dd>
+  <dt><strong>Last locations:</strong></dt>
+  <% @device.locations.last(3).reverse.each do |location| %>
+    <dd><%= location %></dd>
+  <% end %>
 </dl>
 
 <div class="form-actions">
