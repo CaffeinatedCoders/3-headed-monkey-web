@@ -49,6 +49,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.4.1'
   gem 'rspec-collection_matchers', '~> 1.0.0'
   gem 'faker', '~> 1.4.2' #temporarily also in development for testing things out
+  gem 'thin'
 end
 
 group :test do
