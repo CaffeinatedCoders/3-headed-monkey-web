@@ -10,6 +10,14 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'main_page#index'
 
+  namespace :api, :defaults => {:format => :json}, :constraints => {:format => /(xml|json)/} do
+    namespace :v1 do
+      resource :device, path: ":device_key", only: [:update, :show] do
+        resources :locations, only: [:create]
+      end
+    end
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
