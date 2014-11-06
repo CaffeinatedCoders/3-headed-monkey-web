@@ -45,12 +45,15 @@ gem 'devise_invitable', '~> 1.4.0'
 
 gem 'pry-rails'
 
+gem 'activeadmin', github: 'activeadmin'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.2'
   gem 'factory_girl_rails', '~> 4.4.1'
   gem 'rspec-collection_matchers', '~> 1.0.0'
   gem 'faker', '~> 1.4.2' #temporarily also in development for testing things out
   gem 'thin'
+  gem 'awesome_print', :require => 'ap'
 end
 
 group :test do

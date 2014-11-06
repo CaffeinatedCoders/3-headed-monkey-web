@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+
   resources :devices
 
   devise_for :users
+  ActiveAdmin.routes(self)
+
   get 'main_page/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

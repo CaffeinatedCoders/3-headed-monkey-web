@@ -5,4 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
   has_many :devices, :dependent => :destroy
+  #has_many :invitations, :class_name => "User", :as => :invited_by
+  scope :admins, -> { where(admin: true) }
 end
