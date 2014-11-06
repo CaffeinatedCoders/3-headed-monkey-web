@@ -69,7 +69,10 @@
             <ul class="nav nav-list">
               <li class="nav-header">Sidebar</li>
               <% if user_signed_in? %>
-                <%= link_to "Your Devices", devices_path %>
+                <%= link_to "Your Devices", devices_path %><br />
+                    <% if current_user.invitation_limit && current_user.invitation_limit > 0 %>
+                        <%= link_to "Invite User", new_user_invitation_path %>
+                    <% end %>
               <% end %>
             </ul>
           </div><!--/.well -->
