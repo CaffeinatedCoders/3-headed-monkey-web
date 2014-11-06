@@ -44,8 +44,8 @@ gem 'devise'
 gem 'devise_invitable', '~> 1.4.0'
 
 gem 'pry-rails'
-
-gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin', github: 'activeadmin' #todo: change to specific version once released for rails 4
+gem 'rails_config', '~> 0.4.2'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.2'

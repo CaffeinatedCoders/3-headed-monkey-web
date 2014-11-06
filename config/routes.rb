@@ -2,7 +2,12 @@ Rails.application.routes.draw do
 
   resources :devices
 
-  devise_for :users
+  if Settings.registration.invite_only
+    devise_for :users, :controllers => { :registrations => "registration_disabled" }
+  else
+    devise_for :users
+  end
+
   ActiveAdmin.routes(self)
 
   get 'main_page/index'
