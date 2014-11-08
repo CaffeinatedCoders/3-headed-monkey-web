@@ -5,6 +5,14 @@ class Device < ActiveRecord::Base
 
   validates_presence_of :name
 
+  def to_json
+    Jbuilder.encode do |json|
+      json.base_url Settings.host_config.base_url
+      json.base_url_port Settings.host_config.ssl_port
+      json.device_key self.key
+    end
+  end
+
 private
 
   def generate_key

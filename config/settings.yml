@@ -1,2 +1,10 @@
 registration:
   invite_only: false
+
+host_config:
+  base_url: localhost
+  ssl_port: 3000
+  
+view_config:
+  qrcode_size: 350
+

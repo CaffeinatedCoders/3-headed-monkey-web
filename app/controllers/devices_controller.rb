@@ -11,6 +11,16 @@ class DevicesController < ApplicationController
   # GET /devices/1
   # GET /devices/1.json
   def show
+		qr_size = 5
+		qr_size_pixels = Settings.view_config.qrcode_size.to_i
+		@qrcode = nil
+		while @qrcode == nil && qr_size < 20
+		  begin
+		    @qrcode = RQRCode::QRCode.new(@device.to_json, :size => qr_size, :level => :h ).to_img.resize(qr_size_pixels, qr_size_pixels).to_data_url
+		  rescue RQRCode::QRCodeRunTimeError => e
+		    qr_size += 1
+		  end
+		end
   end
 
   # GET /devices/new

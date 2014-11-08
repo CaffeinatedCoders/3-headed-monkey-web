@@ -14,6 +14,11 @@
   <% @device.locations.last(3).reverse.each do |location| %>
     <dd><%= location %></dd>
   <% end %>
+  <dt><strong>Config:</strong></dt>
+  <% unless @qrcode.nil? %>
+  	<dd><%= image_tag @qrcode %></dd>
+  	<dd>Scan this qrcode when setting up your device</dd>
+  <% end %>
 </dl>
 
 <div class="form-actions">
