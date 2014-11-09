@@ -19,6 +19,13 @@
   	<dd><%= image_tag @qrcode %></dd>
   	<dd>Scan this qrcode when setting up your device</dd>
   <% end %>
+    <dt><strong>Confirmation Hash:</strong></dt>
+    <% if @default_cert %>
+      <dd><%= @default_cert.cert_hash %></dd>
+      <dd>Please confirm that this hash matches the one shown on your mobile device</dd>
+    <% else %>
+      <dd>Default certificate not yet configured, please contact the site admin.</dd>
+    <% end %>
 </dl>
 
 <div class="form-actions">

@@ -20,7 +20,8 @@ class DevicesController < ApplicationController
 		  rescue RQRCode::QRCodeRunTimeError => e
 		    qr_size += 1
 		  end
-		end
+    end
+    @default_cert = Certificate.default_certificate
   end
 
   # GET /devices/new
