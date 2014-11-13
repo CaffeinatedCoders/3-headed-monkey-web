@@ -63,3 +63,7 @@ group :test do
   gem 'database_cleaner', '~> 1.3.0'
   gem 'launchy', '~> 2.4.2'
 end
+
+group :production do
+  gem 'pg', '~> 0.17.1'
+end
