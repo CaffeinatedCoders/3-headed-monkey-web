@@ -2,12 +2,11 @@
 
 FactoryGirl.define do
   factory :location do
-    device_id 1
-    latitude "9.99"
-    longitude "9.99"
-    altitude 1.5
+    latitude "47.073542"
+    longitude "15.437714"
+    altitude 400.5
     accuracy 1.5
-    provider "MyString"
-    time "2014-08-09 12:14:21"
+    provider "GPS"
+    time  "2014-11-15 13:40:27 +0100"
   end
 end

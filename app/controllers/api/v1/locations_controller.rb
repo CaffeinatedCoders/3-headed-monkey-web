@@ -3,11 +3,13 @@ class Api::V1::LocationsController < ApplicationController
   before_action :set_device
 
   def create
-    @location = @device.locations.new location_params
-    if @location.save
+    @locations = @device.locations.create location_params
+    @errors = @locations.collect {|location| location.errors.full_messages }.flatten
+
+    if @errors.empty?
       head :ok
     else
-      render json: @location.errors, status: :unprocessable_entity
+      render json: {errors: @errors}, status: :unprocessable_entity
     end
   end
 
@@ -18,7 +20,10 @@ class Api::V1::LocationsController < ApplicationController
   end
 
   def location_params
-    params.require(:location).permit!
+    unless params[:location].is_a? Array
+      params[:location] = [ params[:location] ]
+    end
+    params.permit(location: [:latitude, :longitude, :altitude, :accuracy, :provider, :time]).require(:location)
   end
 
 end

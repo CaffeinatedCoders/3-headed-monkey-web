@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :device do
+    name "Test Device"
   end
 end
