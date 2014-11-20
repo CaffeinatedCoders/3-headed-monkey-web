@@ -1,0 +1,2 @@
+<%= select_tag :device_id, options_from_collection_for_select(@devices, "id", "name"), :prompt => "Select a device", :onchange => "update_locations_for_device(this.value)" %>
+<div id="map"></div>
