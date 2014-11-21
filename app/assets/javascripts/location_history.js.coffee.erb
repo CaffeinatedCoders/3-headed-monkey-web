@@ -3,7 +3,7 @@
 @markers = new L.FeatureGroup()
 @paths = new L.FeatureGroup()
 
-$ ->
+$(document).on 'page:load ready', ->
     L.Icon.Default.imagePath = "/assets/leaflet"
     @map = L.map('map').setView([47.0736333,15.4366147], 13)
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
