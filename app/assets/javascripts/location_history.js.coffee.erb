@@ -4,22 +4,24 @@
 @paths = new L.FeatureGroup()
 
 $(document).on 'page:load ready', ->
-    L.Icon.Default.imagePath = "/assets/leaflet"
-    @map = L.map('map').setView([47.0736333,15.4366147], 13)
+    L.Icon.Default.imagePath = "/leaflet"
+    dom_map = $("#map").get(0)
+    map = L.map(dom_map).setView([47.0736333,15.4366147], 13)
+    dom_map.map = map
     tile_osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     })
     tile_osm_cycle = L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenCycleMap</a> contributors'
     })
-    @map.addLayer(tile_osm)
-    @map.addLayer(markers)
-    @map.addLayer(paths)
+    map.addLayer(tile_osm)
+    map.addLayer(markers)
+    map.addLayer(paths)
     map_tiles = {
       "Open Street Map" : tile_osm
       "Open Cycle Map" : tile_osm_cycle
     }
-    L.control.layers(map_tiles, {"Marker":markers, "Paths":paths}).addTo(@map)
+    L.control.layers(map_tiles, {"Marker":markers, "Paths":paths}).addTo(map)
 
 
 @update_locations_for_device = (device_id) ->
@@ -35,6 +37,8 @@ $(document).on 'page:load ready', ->
       latlongs = data.map (location) ->
         L.latLng location.latitude, location.longitude
       draw_path_on_map(latlongs)
+      map = dom_map = $("#map").get(0).map
+      map.fitBounds(markers.getBounds());
 
 
 draw_locations_on_map = (locations) ->
