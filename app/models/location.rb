@@ -7,4 +7,28 @@ class Location < ActiveRecord::Base
     "#{id}: #{latitude} #{longitude} #{time}"
   end
 
+  scope :date_from, -> (date) {
+    where("time >= ?", Date.strptime(date, "%Y-%m-%d"))
+  }
+
+  scope :date_to, -> (date) {
+    where("time <= ?", Date.strptime(date, "%Y-%m-%d") + 1.days)
+  }
+
+  scope :sort, -> (direction) {
+    if direction.upcase == "ASC"
+      order(time: :asc)
+    else
+      order(time: :desc)
+    end
+  }
+
+  def self.filter(filter_params)
+    locations = self.where(nil)
+    filter_params.each do |key, value|
+      locations = locations.public_send(key, value) if value.present? && !value.empty?
+    end
+    locations
+  end
+
 end

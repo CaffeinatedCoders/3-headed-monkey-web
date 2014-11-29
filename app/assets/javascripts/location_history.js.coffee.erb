@@ -5,6 +5,7 @@
 @circles = new L.FeatureGroup()
 
 $(document).on 'page:load ready', ->
+    $(".filter-date").datepicker({ dateFormat: 'yy-mm-dd' })
     L.Icon.Default.imagePath = "/leaflet"
     dom_map = $("#map").get(0)
     map = L.map(dom_map).setView([47.0736333,15.4366147], 13)
@@ -30,11 +31,13 @@ $(document).on 'page:load ready', ->
     }).addTo(map)
 
 
-@update_locations_for_device = (device_id) ->
+@update_locations_for_device = ->
+  device_id = $("#filter_device_id").val()
   return if device_id.length == 0
   location_path = "<%= CGI.unescape url.location_history_path('{device_id}') %>".replace("{device_id}", device_id);
   $.ajax
     url: location_path
+    data: $("#form-filter").serialize()
     dataType: "json"
     error: (jqXHR, textStatus, errorThrown) ->
       alert("Error: " + textStatus)

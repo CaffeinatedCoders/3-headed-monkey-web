@@ -6,13 +6,18 @@ class LocationHistoryController < ApplicationController
   end
 
   def show
+    puts params.inspect
     if current_user.admin?
       @device = Device.find params[:id]
     else
       @device = current_user.devices.find params[:id]
     end
+    @locations = @device.locations
+    unless params[:filter].nil?
+      @locations = @locations.filter params[:filter].slice("date_from", "date_to", "limit", "sort")
+    end
     respond_to do |format|
-      format.json {render json: @device.locations}
+      format.json {render json: @locations}
     end
   end
 
