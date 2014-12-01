@@ -14,7 +14,7 @@ class LocationHistoryController < ApplicationController
     end
     @locations = @device.locations
     unless params[:filter].nil?
-      @locations = @locations.filter params[:filter].slice("date_from", "date_to", "limit", "sort")
+      @locations = @locations.filter params[:filter].slice("date_from", "date_to", "limit", "sort", "accuracy_better_than")
     end
     respond_to do |format|
       format.json {render json: @locations}

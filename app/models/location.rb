@@ -23,6 +23,10 @@ class Location < ActiveRecord::Base
     end
   }
 
+  scope :accuracy_better_than, -> (accuracy) {
+    where("accuracy < ?", accuracy)
+  }
+
   def self.filter(filter_params)
     locations = self.where(nil)
     filter_params.each do |key, value|

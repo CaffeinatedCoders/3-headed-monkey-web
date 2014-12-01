@@ -20,6 +20,10 @@
                   <%= f.text_field :date_to, class: "form-control filter-date" %>
               </div>
               <div class="form-group">
+                  <%= f.label "Accuracy better than (meters):", class: "control-label" %>
+                  <%= f.text_field :accuracy_better_than, class: "form-control", type: "number", value: "200" %>
+              </div>
+              <div class="form-group">
                   <%= f.label "Limit:", class: "control-label" %>
                   <%= f.text_field :limit, class: "form-control", type: "number", value: "30" %>
                   <%= f.radio_button :sort, "desc", checked: true %>
