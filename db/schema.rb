@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141109101657) do
+ActiveRecord::Schema.define(version: 20150128111644) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -62,6 +62,16 @@ ActiveRecord::Schema.define(version: 20141109101657) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "pendingcommands", force: true do |t|
+    t.integer  "device_id"
+    t.string   "command"
+    t.datetime "completed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pendingcommands", ["device_id"], name: "index_pendingcommands_on_device_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false

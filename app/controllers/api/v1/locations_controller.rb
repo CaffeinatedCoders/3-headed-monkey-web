@@ -1,6 +1,4 @@
-class Api::V1::LocationsController < ApplicationController
-  skip_before_action :verify_authenticity_token
-  before_action :set_device
+class Api::V1::LocationsController < Api::V1::BaseController
 
   def create
     @locations = @device.locations.create location_params
@@ -14,10 +12,6 @@ class Api::V1::LocationsController < ApplicationController
   end
 
   private
-
-  def set_device
-    @device = Device.find_by_key params[:device_key]
-  end
 
   def location_params
     unless params[:location].is_a? Array

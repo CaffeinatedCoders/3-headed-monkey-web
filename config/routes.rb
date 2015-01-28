@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resource :device, path: ":device_key", only: [:update, :show] do
         resources :locations, only: [:create]
+        resources :pendingcommands, only: [:index, :update]
       end
     end
   end

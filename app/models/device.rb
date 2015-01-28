@@ -2,6 +2,7 @@ class Device < ActiveRecord::Base
   before_create :generate_key
   belongs_to :user
   has_many :locations
+  has_many :pendingcommands
 
   validates_presence_of :name
 
