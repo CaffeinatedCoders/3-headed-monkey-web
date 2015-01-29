@@ -1,8 +1,8 @@
 class Device < ActiveRecord::Base
   before_create :generate_key
   belongs_to :user
-  has_many :locations
-  has_many :pendingcommands
+  has_many :locations, :dependent => :destroy
+  has_many :pendingcommands, :dependent => :destroy
 
   validates_presence_of :name
 

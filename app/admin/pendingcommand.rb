@@ -1,0 +1,20 @@
+ActiveAdmin.register Pendingcommand do
+
+  scope :all
+  scope :unfinished
+  scope :finished
+
+
+  index do
+    column :id do |command|
+      link_to command.id, [:admin, command]
+    end
+    column :device
+    column :user
+    column :command
+    column :completed_at
+    column :created_at
+    column :updated_at
+    actions
+  end
+end
