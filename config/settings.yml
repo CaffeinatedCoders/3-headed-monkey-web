@@ -12,3 +12,6 @@ mail_config:
 view_config:
   qrcode_size: 350
 
+gcm_config:
+  project_number:
+  api_key:
