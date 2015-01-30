@@ -1,4 +1,5 @@
 ActiveAdmin.register Pendingcommand do
+  permit_params :command, :completed_at, :device_id
 
   scope :all
   scope :unfinished
