@@ -31,5 +31,7 @@ module ThreeHeadedMonkeyWeb
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
 
+    config.active_job.queue_adapter = :sucker_punch
+
   end
 end
