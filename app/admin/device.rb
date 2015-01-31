@@ -10,5 +10,16 @@ ActiveAdmin.register Device do
     end
     column :created_at
     column :updated_at
+    actions
   end
+
+  member_action :send_gcm, method: :put do
+    SendGcmMessageJob.perform_later resource.id
+    redirect_to resource_path, notice: "GCM Message sent"
+  end
+
+  action_item :send_gcm, only: :show do
+    link_to "Send GCM", send_gcm_admin_device_path(resource), method: :put
+  end
+
 end
