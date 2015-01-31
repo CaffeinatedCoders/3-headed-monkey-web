@@ -48,6 +48,8 @@ gem 'activeadmin', github: 'activeadmin' #todo: change to specific version once 
 gem 'rails_config', '~> 0.4.2'
 gem 'rqrcode_png', '~> 0.1.5'
 
+gem 'gcm', '~> 0.1.0'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.2'
   gem 'factory_girl_rails', '~> 4.4.1'

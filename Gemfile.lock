@@ -97,10 +97,16 @@ GEM
     formtastic (3.0.0)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.1.1)
+    gcm (0.1.0)
+      httparty
+      json
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hike (1.2.3)
+    httparty (0.13.3)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.6.11)
     inherited_resources (1.5.1)
       actionpack (>= 3.2, < 4.2)
@@ -134,6 +140,7 @@ GEM
     mini_portile (0.6.1)
     minitest (5.4.2)
     multi_json (1.10.1)
+    multi_xml (0.5.5)
     nokogiri (1.6.4.1)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
@@ -261,6 +268,7 @@ DEPENDENCIES
   devise_invitable (~> 1.4.0)
   factory_girl_rails (~> 4.4.1)
   faker (~> 1.4.2)
+  gcm (~> 0.1.0)
   jbuilder (~> 2.1)
   jquery-rails
   launchy (~> 2.4.2)

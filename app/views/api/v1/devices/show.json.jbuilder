@@ -6,5 +6,6 @@ end
 if Settings["gcm_config"] && Settings["gcm_config"]["project_number"]
 	json.gcm do
 		json.sender_id Settings["gcm_config"]["project_number"]
+		json.reg_id @device.gcm_regid
 	end
 end
