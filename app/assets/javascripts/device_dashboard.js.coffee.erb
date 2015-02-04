@@ -1,0 +1,19 @@
+<% url_helper = ThreeHeadedMonkeyWeb::Application.routes.url_helpers %>
+
+@periodically_refresh_dashboard = ->
+  device_id = $("#device_id").val()
+  $.ajax
+    dataType: "json"
+    error: (jqXHR, textStatus, errorThrown) ->
+      alert("Error: " + textStatus)
+    success: (data, textStatus, jqXHR) ->
+      unless locmap.getLastLocation()? && locmap.getLastLocation()["time"] == data.last_location["time"]
+        locmap.clear()
+        locmap.addLocations([data.last_location])
+        locmap.moveMapToLocations()
+    complete: ->
+      setTimeout(periodically_refresh_dashboard, 5000)
+
+@init_device_dashboard = ->
+  window.locmap = new LocationMap($("#map").get(0))
+  periodically_refresh_dashboard()

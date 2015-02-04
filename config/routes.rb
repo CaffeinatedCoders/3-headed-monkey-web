@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :device_dashboard, only:  [:index, :show]
   resources :devices
 
   if Settings.registration.invite_only

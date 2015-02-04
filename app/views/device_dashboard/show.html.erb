@@ -1,0 +1,21 @@
+<%= hidden_field_tag "device_id", @device.id %>
+<% content_for :head do %>
+    <script type="text/javascript">
+        $(document).on('page:load ready',function(){init_device_dashboard();} );
+    </script>
+<% end %>
+
+<div class="row">
+    <div class="col-md-9">
+        Placeholder Commands
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-9">
+        <div id="map"></div>
+    </div>
+    <div class="col-md-3">
+        Placeholder Messages
+    </div>
+</div>

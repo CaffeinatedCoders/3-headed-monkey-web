@@ -1,37 +1,11 @@
 <% url = ThreeHeadedMonkeyWeb::Application.routes.url_helpers %>
 
-@markers = new L.FeatureGroup()
-@paths = new L.FeatureGroup()
-@circles = new L.FeatureGroup()
-
-$(document).on 'page:load ready', ->
-    $(".filter-date").datepicker({ dateFormat: 'yy-mm-dd' })
-    L.Icon.Default.imagePath = "/leaflet"
-    dom_map = $("#map").get(0)
-    map = L.map(dom_map).setView([47.0736333,15.4366147], 13)
-    dom_map.map = map
-    tile_osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    })
-    tile_osm_cycle = L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenCycleMap</a> contributors'
-    })
-    map.addLayer(tile_osm)
-    map.addLayer(markers)
-    map.addLayer(paths)
-    map.addLayer(circles)
-    map_tiles = {
-      "Open Street Map" : tile_osm
-      "Open Cycle Map" : tile_osm_cycle
-    }
-    L.control.layers(map_tiles, {
-      "Marker":markers
-      "Paths":paths
-      "Accuracy":circles
-    }).addTo(map)
-
+window.init_location_history_map = ->
+  window.locmap = new LocationMap($("#map").get(0))
+  $(".filter-date").datepicker({ dateFormat: 'yy-mm-dd' })
 
 @update_locations_for_device = ->
+  locmap.clear()
   device_id = $("#filter_device_id").val()
   return if device_id.length == 0
   location_path = "<%= CGI.unescape url.location_history_path('{device_id}') %>".replace("{device_id}", device_id);
@@ -42,38 +16,5 @@ $(document).on 'page:load ready', ->
     error: (jqXHR, textStatus, errorThrown) ->
       alert("Error: " + textStatus)
     success: (data, textStatus, jqXHR) ->
-      draw_locations_on_map(data)
-      draw_accuracycircles_on_map(data)
-      latlongs = data.map (location) ->
-        L.latLng location.latitude, location.longitude
-      draw_path_on_map(latlongs)
-      map = dom_map = $("#map").get(0).map
-      map.fitBounds(markers.getBounds());
-
-
-draw_locations_on_map = (locations) ->
-    markers.clearLayers()
-    add_marker_for_location location for location in locations
-
-add_marker_for_location = (location) ->
-    marker = L.marker([location.latitude, location.longitude])
-    marker.bindPopup("" +
-      location["time"] + "<br/>" +
-      "Accuracy: " + location.accuracy + "m"
-    )
-    markers.addLayer(marker)
-
-draw_path_on_map = (latlongs) ->
-    paths.clearLayers()
-    path = L.polyline(latlongs, {color: 'red'})
-    paths.addLayer(path)
-
-draw_accuracycircles_on_map = (locations) ->
-    circles.clearLayers()
-    add_accuracycircle_for_location location for location in locations
-
-add_accuracycircle_for_location = (location) ->
-    return unless location.accuracy?
-    circle = L.circle([location.latitude, location.longitude], location.accuracy)
-    circles.addLayer(circle)
-
+      locmap.addLocations(data)
+      locmap.moveMapToLocations()

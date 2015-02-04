@@ -1,0 +1,1 @@
+json.last_location @device.locations.last.as_json(only: [:latitude, :longitude, :altitude, :accuracy, :time, :created_at])
