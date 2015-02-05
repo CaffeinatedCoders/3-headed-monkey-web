@@ -1,4 +1,3 @@
-<%= hidden_field_tag "device_id", @device.id %>
 <% content_for :head do %>
     <script type="text/javascript">
         $(document).on('page:load ready',function(){init_device_dashboard();} );
@@ -7,7 +6,8 @@
 
 <div class="row">
     <div class="col-md-9">
-        Placeholder Commands
+        Choose Device: <%= select_tag :device_id, options_from_collection_for_select(@devices, "id", "name", @device.id) %> <br />
+        Choose Command: <%= select_tag :command_select %> <%= button_tag "Run", id: "run_command", type: "button", class: "btn btn-primary" %>
     </div>
 </div>
 

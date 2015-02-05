@@ -8,7 +8,8 @@ class DeviceDashboardController < ApplicationController
   end
 
   def show
-    @device = current_user.devices.find(params[:id])
+    @devices = current_user.devices
+    @device = @devices.find(params[:id])
     respond_to do |format|
       format.html
       format.json

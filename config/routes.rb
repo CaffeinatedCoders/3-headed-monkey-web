@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'pendingcommands/index'
+
+  get 'pendingcommands/create'
+
   resources :device_dashboard, only:  [:index, :show]
-  resources :devices
+  resources :devices do
+    resources :pendingcommands, only: [:index, :create], :defaults => {:format => :json}
+  end
 
   if Settings.registration.invite_only
     devise_for :users, :controllers => { :registrations => "registration_disabled" }

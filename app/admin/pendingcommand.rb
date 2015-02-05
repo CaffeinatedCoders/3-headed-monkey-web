@@ -7,6 +7,7 @@ ActiveAdmin.register Pendingcommand do
 
 
   index do
+    selectable_column
     column :id do |command|
       link_to command.id, [:admin, command]
     end
