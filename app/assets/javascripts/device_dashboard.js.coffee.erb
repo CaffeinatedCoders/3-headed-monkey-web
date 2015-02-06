@@ -56,4 +56,4 @@
   container = $("#message_container")
   for message in messages
     window.last_added_message_time = message.created_at
-    container.append("<div>#{message.text}</div>")
+    container.append("<div>#{message.text_html}</div>")
