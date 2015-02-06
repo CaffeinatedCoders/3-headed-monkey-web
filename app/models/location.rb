@@ -27,6 +27,11 @@ class Location < ActiveRecord::Base
     where("accuracy < ?", accuracy)
   }
 
+  def self.latest
+    order(time: :desc).first
+  end
+
+
   def self.filter(filter_params)
     locations = self.where(nil)
     filter_params.each do |key, value|

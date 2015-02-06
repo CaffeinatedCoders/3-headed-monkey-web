@@ -1,1 +1,2 @@
-json.last_location @device.locations.last.as_json(only: [:latitude, :longitude, :altitude, :accuracy, :time, :created_at])
+json.last_location @device.locations.latest.as_json(only: [:latitude, :longitude, :altitude, :accuracy, :time, :created_at])
+json.messages @messages.as_json(only: [:text, :created_at])

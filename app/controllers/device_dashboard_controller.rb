@@ -10,6 +10,11 @@ class DeviceDashboardController < ApplicationController
   def show
     @devices = current_user.devices
     @device = @devices.find(params[:id])
+    if params[:last_message]
+      @messages = @device.messages.where("created_at > ?", Time.parse(params[:last_message]) + 0.001.second)
+    else
+      @messages = @device.messages.last(5)
+    end
     respond_to do |format|
       format.html
       format.json

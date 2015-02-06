@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       resource :device, path: ":device_key", only: [:update, :show] do
         resources :locations, only: [:create]
         resources :pendingcommands, only: [:index, :update]
+        resources :messages, only: [:create]
       end
     end
   end

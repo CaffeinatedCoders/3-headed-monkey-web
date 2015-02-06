@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130203519) do
+ActiveRecord::Schema.define(version: 20150206102742) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20150130203519) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "gcm_regid"
+    t.string   "gcm_regid",  limit: 255
   end
 
   add_index "devices", ["key"], name: "index_devices_on_key", unique: true
@@ -64,9 +64,18 @@ ActiveRecord::Schema.define(version: 20150130203519) do
     t.datetime "updated_at"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer  "device_id"
+    t.text     "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "messages", ["device_id"], name: "index_messages_on_device_id"
+
   create_table "pendingcommands", force: :cascade do |t|
     t.integer  "device_id"
-    t.string   "command"
+    t.string   "command",      limit: 255
     t.datetime "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"

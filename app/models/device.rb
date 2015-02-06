@@ -3,6 +3,7 @@ class Device < ActiveRecord::Base
   belongs_to :user
   has_many :locations, :dependent => :destroy
   has_many :pendingcommands, :dependent => :destroy
+  has_many :messages, :dependent => :destroy
 
   validates_presence_of :name
 

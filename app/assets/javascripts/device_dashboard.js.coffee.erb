@@ -2,8 +2,11 @@
 
 @periodically_refresh_dashboard = ->
   device_id = $("#device_id").val()
+  data = {}
+  data.last_message = window.last_added_message_time if window.last_added_message_time?
   $.ajax
     dataType: "json"
+    data: data
     error: (jqXHR, textStatus, errorThrown) ->
       alert("Error: " + textStatus)
     success: (data, textStatus, jqXHR) ->
@@ -12,6 +15,7 @@
           locmap.clear()
           locmap.addLocations([data.last_location])
           locmap.moveMapToLocations()
+      add_messages(data.messages) if data.messages?
     complete: ->
       setTimeout(periodically_refresh_dashboard, 5000)
 
@@ -48,3 +52,8 @@
     success: (data, textStatus, jqXHR) ->
       alert("Sucess")
 
+@add_messages = (messages) ->
+  container = $("#message_container")
+  for message in messages
+    window.last_added_message_time = message.created_at
+    container.append("<div>#{message.text}</div>")
