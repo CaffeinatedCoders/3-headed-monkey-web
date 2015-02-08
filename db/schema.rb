@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206102742) do
+ActiveRecord::Schema.define(version: 20150208120807) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -82,6 +82,15 @@ ActiveRecord::Schema.define(version: 20150206102742) do
   end
 
   add_index "pendingcommands", ["device_id"], name: "index_pendingcommands_on_device_id"
+
+  create_table "uploaded_files", force: :cascade do |t|
+    t.string   "file"
+    t.integer  "device_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "uploaded_files", ["device_id"], name: "index_uploaded_files_on_device_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",    null: false

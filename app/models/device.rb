@@ -4,6 +4,7 @@ class Device < ActiveRecord::Base
   has_many :locations, :dependent => :destroy
   has_many :pendingcommands, :dependent => :destroy
   has_many :messages, :dependent => :destroy
+  has_many :uploaded_files, :dependent => :destroy
 
   validates_presence_of :name
 

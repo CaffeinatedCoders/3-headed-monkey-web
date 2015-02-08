@@ -10,6 +10,8 @@
   <dd><%= @device.name %></dd>
   <dt><strong>Saved locations:</strong></dt>
   <dd><%= @device.locations.size %></dd>
+  <dt><strong><%= link_to "Uploaded Files", device_uploaded_files_path(@device) %></strong></dt>
+  <dd><%= @device.uploaded_files.size %></dd>
   <dt><strong>Last locations:</strong></dt>
   <% @device.locations.last(3).reverse.each do |location| %>
     <dd><%= location %></dd>

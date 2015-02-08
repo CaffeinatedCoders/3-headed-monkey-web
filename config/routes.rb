@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :device_dashboard, only:  [:index, :show]
   resources :devices do
     resources :pendingcommands, only: [:index, :create], :defaults => {:format => :json}
+    resources :uploaded_files, only: [:index, :show, :destroy]
   end
 
   if Settings.registration.invite_only
@@ -30,6 +31,7 @@ Rails.application.routes.draw do
         resources :locations, only: [:create]
         resources :pendingcommands, only: [:index, :update]
         resources :messages, only: [:create]
+        resources :uploaded_files, only: [:create]
       end
     end
   end
