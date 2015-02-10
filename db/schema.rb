@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20150208120807) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "gcm_regid",  limit: 255
+    t.string   "gcm_regid"
   end
 
   add_index "devices", ["key"], name: "index_devices_on_key", unique: true
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20150208120807) do
 
   create_table "pendingcommands", force: :cascade do |t|
     t.integer  "device_id"
-    t.string   "command",      limit: 255
+    t.string   "command"
     t.datetime "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
