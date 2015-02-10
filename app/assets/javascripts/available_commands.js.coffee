@@ -7,4 +7,7 @@
 ,
   name: "Find Location (GPS)"
   value: "findGpsLocation"
+,
+  name: "Take Picture"
+  value: "takePicture"
 ]

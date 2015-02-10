@@ -23,7 +23,11 @@ class UploadedFilesController <  ApplicationController
   private
 
   def get_device
-    @device = current_user.devices.find params[:device_id]
+    if current_user.admin?
+      @device = Device.find params[:device_id]
+    else
+      @device = current_user.devices.find params[:device_id]
+    end
   end
 
 end

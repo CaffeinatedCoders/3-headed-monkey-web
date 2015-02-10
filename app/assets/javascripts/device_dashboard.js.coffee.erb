@@ -50,10 +50,11 @@
     error: (jqXHR, textStatus, errorThrown) ->
       alert("Error: " + textStatus)
     success: (data, textStatus, jqXHR) ->
-      alert("Sucess")
+      add_messages([{text_html: "<p>Sent Command: " + command_str + "</p>"}])
 
 @add_messages = (messages) ->
   container = $("#message_container")
   for message in messages
-    window.last_added_message_time = message.created_at
+    window.last_added_message_time = message.created_at if message.created_at?
     container.append("<div>#{message.text_html}</div>")
+  container.animate({ scrollTop: container.prop("scrollHeight")}, 3000);

@@ -12,6 +12,8 @@ class Api::V1::MessagesController < Api::V1::BaseController
   private
 
   def message_params
-    params.require(:message).permit(:text)
+    p = params.require(:message).permit(:text)
+    p[:text] = ERB::Util.html_escape p[:text]
+    p
   end
 end

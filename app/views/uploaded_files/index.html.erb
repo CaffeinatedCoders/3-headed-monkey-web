@@ -5,6 +5,7 @@
           <td></td>
           <td>Filename</td>
           <td>Content Type</td>
+          <td>Size</td>
           <td>Created At</td>
           <td></td>
       </tr>
@@ -15,6 +16,7 @@
             <td><%= link_to "Download", device_uploaded_file_path(uf.device, uf), type: "button", class: "btn btn-primary" %></td>
             <td><%= uf.filename %></td>
             <td><%= uf.content_type %></td>
+            <td><%= number_to_human_size(uf.file_size) %></td>
             <td><%= uf.created_at %></td>
             <td><%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                             device_uploaded_file_path(uf.device, uf),

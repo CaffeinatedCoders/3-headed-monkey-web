@@ -11,6 +11,7 @@ if ENV['SSL'] == "true"
           def default_options
               super.merge({
                   :Port => 3001,
+                  :Host => "0.0.0.0",
                   :environment => (ENV['RAILS_ENV'] || "development").dup,
                   :daemonize => false,
                   :debugger => false,

@@ -7,6 +7,7 @@ class Api::V1::PendingcommandsController < Api::V1::BaseController
   def update
     @pendingcommand = @device.pendingcommands.find(params[:id])
     if @pendingcommand.update(pendingcommand_params)
+      @device.messages.create(text: "Command finished: " + @pendingcommand.command)
       head :ok
     else
       render json: @pendingcommand.errors, status: :unprocessable_entity
