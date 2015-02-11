@@ -8,7 +8,7 @@ class UploadedFilesController <  ApplicationController
 
   def show
     @uploaded_file = @device.uploaded_files.find(params[:id])
-    send_file @uploaded_file.file.path, :x_sendfile=>true
+    send_file @uploaded_file.file.path, x_sendfile: true, filename: @uploaded_file.original_filename
   end
 
   def destroy

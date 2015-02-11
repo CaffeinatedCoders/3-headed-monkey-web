@@ -14,7 +14,7 @@
       <% for uf in @uploaded_files do %>
         <tr>
             <td><%= link_to "Download", device_uploaded_file_path(uf.device, uf), type: "button", class: "btn btn-primary" %></td>
-            <td><%= uf.filename %></td>
+            <td><%= uf.original_filename %></td>
             <td><%= uf.content_type %></td>
             <td><%= number_to_human_size(uf.file_size) %></td>
             <td><%= uf.created_at %></td>

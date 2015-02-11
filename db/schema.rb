@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208120807) do
+ActiveRecord::Schema.define(version: 20150211131349) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20150208120807) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "gcm_regid"
+    t.string   "gcm_regid",  limit: 255
   end
 
   add_index "devices", ["key"], name: "index_devices_on_key", unique: true
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20150208120807) do
 
   create_table "pendingcommands", force: :cascade do |t|
     t.integer  "device_id"
-    t.string   "command"
+    t.string   "command",      limit: 255
     t.datetime "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -86,8 +86,9 @@ ActiveRecord::Schema.define(version: 20150208120807) do
   create_table "uploaded_files", force: :cascade do |t|
     t.string   "file"
     t.integer  "device_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "original_filename"
   end
 
   add_index "uploaded_files", ["device_id"], name: "index_uploaded_files_on_device_id"

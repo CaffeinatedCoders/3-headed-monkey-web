@@ -1,6 +1,11 @@
 # encoding: utf-8
 
 class FileUploader < CarrierWave::Uploader::Base
+  before :cache, :save_original_filename
+
+  def save_original_filename(file)
+    model.original_filename ||= file.original_filename if file.respond_to?(:original_filename)
+  end
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -19,10 +24,10 @@ class FileUploader < CarrierWave::Uploader::Base
   #   "uploads/#{model.class.to_s.underscore}"
   # end
   def store_dir
-    Rails.root.join("uploads", model.class.to_s.underscore, model.id.to_s).to_s
+    Rails.root.join("uploads", Rails.env, model.class.to_s.underscore).to_s
   end
   def cache_dir
-    Rails.root.join("tmp", "cache", "uploads", model.class.to_s.underscore, model.id.to_s).to_s
+    Rails.root.join("tmp", "cache", "uploads", Rails.env, model.class.to_s.underscore).to_s
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -60,5 +65,16 @@ class FileUploader < CarrierWave::Uploader::Base
   #   var = :"@#{mounted_as}_timestamp"
   #   model.instance_variable_get(var) or model.instance_variable_set(var, Time.now.to_i)
   # end
+
+  def filename
+    "#{secure_token}.#{file.extension}" if original_filename.present?
+  end
+
+  protected
+
+  def secure_token
+    var = :"@#{mounted_as}_secure_token"
+    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+  end
 
 end

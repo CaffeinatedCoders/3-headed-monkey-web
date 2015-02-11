@@ -77,4 +77,12 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 =end
+
+
+  config.after(:all) do
+    if Rails.env.test?
+      FileUtils.rm_rf(Dir["#{Rails.root}/uploads/#{Rails.env}"])
+    end
+  end
+
 end

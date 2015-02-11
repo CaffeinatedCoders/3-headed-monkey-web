@@ -8,7 +8,7 @@ ActiveAdmin.register UploadedFile do
     column :device
     column :user
     column :created_at
-    column :filename
+    column :original_filename
     column :content_type
     column :file_size do |f|
       number_to_human_size(f.file_size)
